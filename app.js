@@ -5,11 +5,8 @@ import flip from './index.src';
 
 // respond with "hello world" when a GET request is made to the homepage
 app.get('/', function (req, res) {
-    flip(req.query.state == "off").then(
-        () => {
-            res.send('hello world');
-        }
-    )
+    flip(req.query.state == "off");
+    res.send('Dispatching Action');
 
 })
 
