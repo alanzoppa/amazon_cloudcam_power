@@ -1,10 +1,9 @@
-const puppeteer = require('puppeteer');
-
-
+const puppeteer = require('puppeteer'); 
 
 async function flip(shouldBePrivate)  {
-    const browser = await puppeteer.launch({executablePath: "chromium-browser"});
-    //const browser = await puppeteer.launch({headless: false, executablePath: "chromium-browser"});
+    //const browser = await puppeteer.launch({executablePath: "chromium-browser"});
+    //const browser = await puppeteer.launch({headless: false});
+    const browser = await puppeteer.launch();
     const page = await browser.newPage();
     await page.setUserAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.113 Safari/537.36");
     await page.setExtraHTTPHeaders({
@@ -25,8 +24,23 @@ async function flip(shouldBePrivate)  {
     }); 
 
     await page.goto('http://cloudcam.amazon.com/', {waitUntil: 'networkidle2'});
+
+
+
+
+    await page.$('.sign-in-btn');
+    await page.click('.sign-in-btn');
+
+    await page.waitFor(500);
+
+
+
     await page.$('#ap_email');
     await page.click('#ap_email');
+
+
+
+
     await page.keyboard.type(process.env.AMAZON_EMAIL)
     await page.click('#ap_password');
     await page.keyboard.type(process.env.AMAZON_PASSWORD)
@@ -53,5 +67,3 @@ async function flip(shouldBePrivate)  {
 }
 
 export default flip;
-
-flip(false);
