@@ -1,9 +1,9 @@
 const puppeteer = require('puppeteer'); 
 
 async function flip(shouldBePrivate)  {
-    //const browser = await puppeteer.launch({executablePath: "chromium-browser"});
+    const browser = await puppeteer.launch({executablePath: "chromium-browser"});
     //const browser = await puppeteer.launch({headless: false});
-    const browser = await puppeteer.launch();
+    //const browser = await puppeteer.launch();
     const page = await browser.newPage();
     await page.setUserAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.113 Safari/537.36");
     await page.setExtraHTTPHeaders({
